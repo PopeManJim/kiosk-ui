@@ -1,25 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Surprise Shop Kiosk</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>
-    <h1>The Surprise Shop</h1>
-    <input type="text" id="search" placeholder="Search cards, games, or figures..." />
-  </header>
+import { fetchProducts } from './shopify-api.js';
 
-  <main id="product-list">
-    <!-- Products will load here -->
-  </main>
+let allProducts = [];
 
-  <footer>
-    <p>Powered by Shopify | Designed for In-Store Use</p>
-  </footer>
+async function loadProducts() {
+  allProducts = await fetchProducts();
+  renderProducts(allProducts);
+}
 
-  <script src="app.js"></script>
-</body>
-</html>
+function renderProducts(products) {
+  const container = document.getElementById('product-list');
+  container.innerHTML = '';
+
+  products.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <img src="${product.image}" alt="${product.title}" />
+      <h3>${product.title}</h3>
+      <p>$${product.price}</p>
+    `;
+    container.appendChild(card);
+  });
+}
+
+document.getElementById('search-input').addEventListener('input', (e) => {
+  const query = e.target.value.toLowerCase();
+  const filtered = allProducts.filter(product =>
+    product.title.toLowerCase().includes(query)
+  );
+  renderProducts(filtered);
+});
+
+loadProducts();
+
