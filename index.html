@@ -23,13 +23,18 @@ function renderProducts(products) {
   });
 }
 
-document.getElementById('search-input').addEventListener('input', (e) => {
-  const query = e.target.value.toLowerCase();
-  const filtered = allProducts.filter(product =>
-    product.title.toLowerCase().includes(query)
-  );
-  renderProducts(filtered);
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.getElementById('search-input');
+
+  searchInput.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase();
+    const filtered = allProducts.filter(product =>
+      product.title.toLowerCase().includes(query)
+    );
+    renderProducts(filtered);
+  });
+
+  loadProducts();
 });
 
-loadProducts();
 
