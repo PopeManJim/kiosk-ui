@@ -1,34 +1,24 @@
-// Replace with your actual Shopify store and access token if needed
-const SHOPIFY_STORE = 'your-store-name.myshopify.com';
-const PRODUCTS_ENDPOINT = `https://${SHOPIFY_STORE}/products.json`;
-
-async function fetchProducts() {
-  try {
-    const response = await fetch(PRODUCTS_ENDPOINT);
-    const data = await response.json();
-    renderProducts(data.products);
-  } catch (error) {
-    console.error('Failed to fetch products:', error);
-  }
+export async function fetchProducts() {
+  return [
+    {
+      id: 1,
+      title: 'Blue-Eyes White Dragon',
+      price: '24.99',
+      image: 'https://upload.wikimedia.org/wikipedia/en/1/11/BlueEyesWhiteDragon-LOB-001.jpg'
+    },
+    {
+      id: 2,
+      title: 'Charizard Holo 1st Edition',
+      price: '299.99',
+      image: 'https://images.pokemontcg.io/base1/4_hires.png'
+    },
+    {
+      id: 3,
+      title: 'Black Lotus',
+      price: '99999.99',
+      image: 'https://cards.scryfall.io/large/front/0/0/00c4e0d5-1ab5-447f-8e50-d9a6474b56f0.jpg?1599693960'
+    }
+  ];
 }
 
-function renderProducts(products) {
-  const container = document.getElementById('product-list');
-  container.innerHTML = '';
-
-  products.forEach(product => {
-    const card = document.createElement('div');
-    card.className = 'product-card';
-
-    card.innerHTML = `
-      <img src="${product.images[0]?.src || 'https://via.placeholder.com/300x300?text=No+Image'}" alt="${product.title}" />
-      <h3>${product.title}</h3>
-      <p>$${product.variants[0].price}</p>
-    `;
-
-    container.appendChild(card);
-  });
-}
-
-fetchProducts();
 
