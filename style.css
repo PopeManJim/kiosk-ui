@@ -60,25 +60,26 @@ h1 {
 #category-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 20px;
   justify-content: center;
   margin-bottom: 40px;
 }
 
 .category-btn {
-  width: 160px;
-  height: 100px;
-  font-size: 20px;
+  width: 200px;
+  height: 200px;
+  font-size: 22px;
   background-color: #14213d;
   color: #00b4d8;
-  border: 2px solid #00b4d8;
-  border-radius: 12px;
+  border: 3px solid #00b4d8;
+  border-radius: 16px;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  font-weight: bold;
 }
 
 .category-btn:hover {
@@ -126,4 +127,3 @@ h1 {
   font-weight: bold;
   color: #90e0ef;
 }
-
