@@ -16,9 +16,11 @@ function renderProducts(products) {
     card.className = 'product-card';
 
     card.innerHTML = `
-      <img src="${product.image}" alt="${product.title}" />
-      <h3>${product.title}</h3>
-      <p>$${product.price}</p>
+      <a href="https://the-surprise-shop.com/products/${product.handle}" target="_blank">
+        <img src="${product.image}" alt="${product.title}" />
+        <h3>${product.title}</h3>
+        <p>$${product.price}</p>
+      </a>
     `;
 
     container.appendChild(card);
@@ -34,3 +36,4 @@ document.getElementById('search-input').addEventListener('input', (e) => {
 });
 
 loadProducts();
+
