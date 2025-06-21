@@ -23,21 +23,38 @@ function renderProducts(products) {
   });
 }
 
-document.getElementById('search-input').addEventListener('input', (e) => {
-  const query = e.target.value.toLowerCase();
+function filterProducts(query) {
+  const lower = query.toLowerCase();
   const filtered = allProducts.filter(product =>
-    product.title.toLowerCase().includes(query)
+    product.title.toLowerCase().includes(lower)
   );
   renderProducts(filtered);
+}
+
+// Text input search
+document.getElementById('search-input').addEventListener('input', (e) => {
+  filterProducts(e.target.value);
 });
 
+// Button search
 document.getElementById('search-button').addEventListener('click', () => {
-  const query = document.getElementById('search-input').value.toLowerCase();
-  const filtered = allProducts.filter(product =>
-    product.title.toLowerCase().includes(query)
-  );
-  renderProducts(filtered);
+  const query = document.getElementById('search-input').value;
+  filterProducts(query);
 });
+
+// Category button filter
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('category-btn')) {
+    const category = e.target.dataset.category?.toLowerCase();
+    const filtered = allProducts.filter(product =>
+      product.tags?.some(tag => tag.toLowerCase() === category)
+    );
+    renderProducts(filtered);
+  }
+});
+
+loadProducts();
+
 
 
 
