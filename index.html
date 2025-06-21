@@ -1,39 +1,20 @@
-import { fetchProducts } from './shopify-api.js';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Surprise Shop Kiosk</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>The Surprise Shop Kiosk</h1>
+    <input type="text" id="search-input" placeholder="Search for products..." />
+    <div id="product-list"></div>
+  </div>
 
-let allProducts = [];
-
-async function loadProducts() {
-  allProducts = await fetchProducts();
-  renderProducts(allProducts);
-}
-
-function renderProducts(products) {
-  const container = document.getElementById('product-list');
-  container.innerHTML = '';
-
-  products.forEach(product => {
-    const card = document.createElement('div');
-    card.className = 'product-card';
-
-    card.innerHTML = `
-      <img src="${product.image}" alt="${product.title}" />
-      <h3>${product.title}</h3>
-      <p>$${product.price}</p>
-    `;
-
-    container.appendChild(card);
-  });
-}
-
-document.getElementById('search-input').addEventListener('input', (e) => {
-  const query = e.target.value.toLowerCase();
-  const filtered = allProducts.filter(product =>
-    product.title.toLowerCase().includes(query)
-  );
-  renderProducts(filtered);
-});
-
-loadProducts();
-
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
 
 
