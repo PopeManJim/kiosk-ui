@@ -31,6 +31,13 @@ document.getElementById('search-input').addEventListener('input', (e) => {
   renderProducts(filtered);
 });
 
-loadProducts();
+document.getElementById('search-button').addEventListener('click', () => {
+  const query = document.getElementById('search-input').value.toLowerCase();
+  const filtered = allProducts.filter(product =>
+    product.title.toLowerCase().includes(query)
+  );
+  renderProducts(filtered);
+});
+
 
 
