@@ -1,5 +1,4 @@
 export async function fetchProducts() {
-  // Mock products that reflect your Surprise Shop inventory types
   return [
     {
       title: 'Magic: The Gathering – The One Ring',
