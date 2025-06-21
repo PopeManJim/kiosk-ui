@@ -14,15 +14,11 @@ function renderProducts(products) {
   products.forEach(product => {
     const card = document.createElement('div');
     card.className = 'product-card';
-
     card.innerHTML = `
-      <a href="https://the-surprise-shop.com/products/${product.handle}" target="_blank">
-        <img src="${product.image}" alt="${product.title}" />
-        <h3>${product.title}</h3>
-        <p>$${product.price}</p>
-      </a>
+      <img src="${product.image}" alt="${product.title}" />
+      <h3>${product.title}</h3>
+      <p>$${product.price}</p>
     `;
-
     container.appendChild(card);
   });
 }
@@ -36,4 +32,5 @@ document.getElementById('search-input').addEventListener('input', (e) => {
 });
 
 loadProducts();
+
 
